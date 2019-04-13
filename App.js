@@ -44,8 +44,8 @@ export default class App extends React.Component {
   fetchEvents(){
     const { location, page } = this.state;
     const { latitude, longitude } = location.coords;
-    // const endpoint = `https://theygood.live/api/events/nearby?lat=${latitude}&lng=${longitude}`;
-    const endpoint = `https://theygood.live/api/events/nearby?lat=40.7142525&lng=-73.9558419`;
+    const endpoint = `https://theygood.live/api/events/nearby?lat=${latitude}&lng=${longitude}`;
+    // const endpoint = `https://theygood.live/api/events/nearby?lat=40.7142525&lng=-73.9558419`;
     this.setState({ loading: true });
 
     fetch(endpoint)
