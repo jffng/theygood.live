@@ -17,7 +17,7 @@ export default class Events extends React.Component {
   };
 
   renderItem = ({item}) => {
-    return ( <Event item={item}/> )
+    return ( <Event item={item} navigation={this.props.navigation}/> )
   }
 
   render (){

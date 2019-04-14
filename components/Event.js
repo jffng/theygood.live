@@ -16,6 +16,9 @@ export default class Event extends React.PureComponent {
         rightTitle={ item.venue }
         rightSubtitle={ distance }
         rightTitleStyle={{ textAlign: 'right' }}
+        onPress={() => this.props.navigation.navigate('EventDetail', {
+          data: item
+        })}
       />
     );
   }
