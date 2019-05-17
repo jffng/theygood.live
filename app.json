@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "They Good Live",
-    "slug": "theygood.live",
+    "slug": "theygoodlive",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -23,7 +23,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jffng.theygoodlive"
+    },
+    "android": {
+      "package": "com.jffng.theygoodlive"
+    },
+    "description": "",
+    "githubUrl": "https://github.com/jffng/theygood.live"
   }
 }

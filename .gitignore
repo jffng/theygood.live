@@ -6,3 +6,5 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.swp
+*.DS_Store
+assets/fonts

@@ -10,7 +10,7 @@ export default class Event extends React.PureComponent {
     return (
       <ListItem
         title={item.name}
-        titleStyle={{ fontWeight: 'bold' }}
+		titleStyle={{ fontFamily: 'authentic-medium' }}
         containerStyle={{ alignItems: 'flex-start', marginTop: 10, marginBottom: 10 }}
         subtitle={ date }
         rightTitle={ item.venue }
