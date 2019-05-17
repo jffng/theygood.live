@@ -1,22 +1,28 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer  } from 'react-navigation';
-import { ThemeProvider } from 'react-native-elements';
+import { Header, ThemeProvider } from 'react-native-elements';
 import { Font, Constants, Location, Permissions } from 'expo';
 import Events from './components/Events';
 import EventDetail from './components/EventDetail';
 
 class HomeScreen extends React.Component {
 	constructor(props){
-	super(props);
+		super(props);
 
-	this.state = {
+		this.state = {
 			loading: false,
 			data: [],
 			page: 1,
 			error: null,
 			refreshing: false,
 			location: null
+		}
+	}
+
+	static navigationOptions = {
+		headerStyle: {
+			backgroundColor: '#eee'
 		}
 	}
 
@@ -92,7 +98,6 @@ class HomeScreen extends React.Component {
 				this.state.fontLoaded ? (
 					<View>
 						<View style={{ borderBottomWidth: 1, borderBottomColor: '#CED0CE' }}>
-							<Text style={styles.header}>TheyGood.Live</Text>
 							<Text style={styles.loading}>{ text }</Text>
 						</View>
 						<Events data={this.state.data} navigation={this.props.navigation}/>
@@ -105,16 +110,12 @@ class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	header: {
-		fontSize: 42,
-		textAlign: 'center',
-		margin: 48,
-		marginBottom: 14
-	},
-		loading: {
+	loading: {
 		fontSize: 22,
-		textAlign: 'center',
-		margin: 16
+		fontFamily: 'authentic',
+		textAlign: 'left',
+		margin: 14,
+		marginTop: 20
 	}
 });
 
