@@ -9,16 +9,17 @@ export default class Event extends React.PureComponent {
     const date = moment(item.startTimeUTC).format("LT");
     return (
       <ListItem
-        title={ item.name }
-		titleStyle={{ fontFamily: 'authentic-medium', fontSize: 22 }}
-        containerStyle={{ alignItems: 'flex-start', marginTop: 10, marginBottom: 10 }}
-        subtitle={ date }
-        rightTitle={ item.venue }
-        rightSubtitle={ distance }
-        rightTitleStyle={{ textAlign: 'right' }}
+		chevron={ true }
+        containerStyle={{ alignItems: 'flex-start', marginTop: 10, marginBottom: 10, backgroundColor: 'transparent' }}
         onPress={ () => this.props.navigation.navigate( 'EventDetail', {
 			data: item
         })}
+        subtitle={ date + ' at ' + item.venue }
+        title={ item.name }
+		titleStyle={{ fontFamily: 'authentic', fontSize: 22 }}
+        rightTitle={ distance }
+        rightTitleStyle={{ textAlign: 'right' }}
+		underlayColor={ '#eee' }
       />
     );
   }

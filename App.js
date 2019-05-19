@@ -21,10 +21,11 @@ class HomeScreen extends React.Component {
 	}
 
 	static navigationOptions = {
+		// header: null
 		headerStyle: {
 			backgroundColor: '#eee'
 		}
-	}
+	};
 
 	componentWillMount() {
 		if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -111,7 +112,7 @@ class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
 	loading: {
-		fontSize: 22,
+		fontSize: 14,
 		fontFamily: 'authentic',
 		textAlign: 'left',
 		margin: 14,
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
 
 const AppNavigator = createStackNavigator({
 	Home: {
-		screen: HomeScreen
+		screen: HomeScreen,
 	},
 	EventDetail: {
 		screen: EventDetail

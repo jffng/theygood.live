@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { ThemeProvider } from 'react-native-elements';
-import { MapView  } from 'expo';
+import { View, ScrollView, Text, StyleSheet, Linking } from 'react-native';
+import { Button, ThemeProvider, Divider } from 'react-native-elements';
+import { MapView } from 'expo';
+import openMap from 'react-native-open-maps';
 
 export default class EventDetail extends React.Component {
 	constructor(props){
@@ -50,29 +51,34 @@ export default class EventDetail extends React.Component {
 
 	render(){
 		const { data } = this.state;
+		const mapOptions = {
+			query: data ? data.venue + ', ' + data.address + ', ' + data.city : null,
+			travelType: 'walk',
+			provider: 'google'
+		};
 		return (
 			<ThemeProvider>
 				{
 					this.state.loading ? <Text>Loading...</Text> : 
-					<View style={{ margin: 12 }}>
+					<ScrollView style={{ marginLeft: 12, marginRight: 12 }}>
 						<Text style={ styles.label }>Event</Text>
 						<Text style={ styles.name }>{ data.name }</Text>
-						<Text style={ styles.label }>Venue</Text>
-						<Text style={ styles.venue }>{ data.venue }</Text>
+						<Divider style={{ backgroundColor: '#CED0CE' }} />
 						<Text style={ styles.label }>Artists</Text>
 						{
 							this.renderArtists()
 						}
-						<MapView 
-							style={{ flex: 1 }}
-							initialRegion={{
-								latitude: data.latitude,
-								longitude: data.longitude,
-								latitudeDelta: 0.0922,
-								longitudeDelta: 0.0421
-							}}
-						/>
-					</View>
+						<Divider style={{ backgroundColor: '#CED0CE' }} />
+						<Text style={ styles.label }>Cover / Tickets</Text>
+						<Button title={ data.isSoldOut ? 'Sold Out' : data.priceAsString } type="clear" containerStyle={{ alignItems: "flex-start" }} buttonStyle={{ padding: 0, marginBottom: 0 }} titleStyle={ styles.venue } onPress={ () => Linking.openURL( data.ticketsURL || data.url ) } />
+						<Text style={ styles.venue }>{  }</Text>
+						<Divider style={{ backgroundColor: '#CED0CE' }} />
+						<Text style={ styles.label }>Venue</Text>
+						<Button title={ data.venue } type="clear" containerStyle={{ alignItems: "flex-start" }} buttonStyle={{ padding: 0, marginBottom: 8 }} titleStyle={ styles.venue } onPress={ () => openMap( mapOptions ) } />
+						<Divider style={{ backgroundColor: '#CED0CE' }} />
+						<Text style={ styles.label }>Description</Text>
+						<Text style={ styles.description }>{ data.description }</Text>
+					</ScrollView>
 				}
 			</ThemeProvider>
 		);
@@ -88,16 +94,23 @@ const styles = StyleSheet.create({
 	venue: {
 		fontFamily: 'authentic',
 		fontSize: 28,
-		marginBottom: 8
+		textAlign: 'left'
 	},
 	artist: {
 		fontFamily: 'authentic',
 		fontSize: 28,
 		marginBottom: 8
 	},
+	description: {
+		fontFamily: 'authentic',
+		fontSize: 22,
+		marginBottom: 8
+	},
 	label: {
 		fontFamily: 'authentic',
 		fontSize: 20,
+		marginTop: 12,
+		marginBottom: 4,
 		color: '#444'
 	},
 });
