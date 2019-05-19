@@ -112,5 +112,5 @@ const styles = StyleSheet.create({
 		marginTop: 12,
 		marginBottom: 4,
 		color: '#444'
-	}
+	},
 });
