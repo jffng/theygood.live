@@ -18,6 +18,8 @@ class HomeScreen extends React.Component {
 			refreshing: false,
 			location: null
 		}
+		this.fetchEvents = this.fetchEvents.bind(this);
+		this._getLocationAsync = this._getLocationAsync.bind(this);
 	}
 
 	static navigationOptions = {
@@ -66,7 +68,7 @@ class HomeScreen extends React.Component {
 		const { latitude, longitude } = location.coords;
 		// const endpoint = `https://theygood.live/api/events/nearby?lat=${latitude}&lng=${longitude}`;
 		const endpoint = `https://theygood.live/api/events/nearby?lat=40.7142525&lng=-73.9558419`;
-		this.setState({ loading: true });
+		this.setState({ loading: true, refreshing: true });
 
 		fetch(endpoint)
 			.then(res => res.json())
@@ -79,7 +81,7 @@ class HomeScreen extends React.Component {
 			});
 		})
 		.catch(error => {
-			this.setState({ error, loading: false })
+			this.setState({ error, loading: false, refreshing: false })
 		});
 	}
 
@@ -101,7 +103,7 @@ class HomeScreen extends React.Component {
 						<View style={{ borderBottomWidth: 1, borderBottomColor: '#CED0CE' }}>
 							<Text style={styles.loading}>{ text }</Text>
 						</View>
-						<Events data={this.state.data} navigation={this.props.navigation}/>
+						<Events fetchEvents={ this.fetchEvents } refreshing={ this.state.refreshing } data={this.state.data} navigation={this.props.navigation}/>
 					</View>
 				) : <View/>
 			}
